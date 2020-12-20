@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AteshgahPracticalProject.Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AteshgahPracticalProject.Business.Tests", "AteshgahPracticalProject.Business.Tests\AteshgahPracticalProject.Business.Tests.csproj", "{447FBB8A-FD1D-4559-AE51-C54141D8641A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AteshgahPracticalProject.ConsoleUI", "AteshgahPracticalProject.ConsoleUI\AteshgahPracticalProject.ConsoleUI.csproj", "{B2BF8EA8-5F90-4E66-A05B-EE2C821F85C1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{447FBB8A-FD1D-4559-AE51-C54141D8641A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{447FBB8A-FD1D-4559-AE51-C54141D8641A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{447FBB8A-FD1D-4559-AE51-C54141D8641A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2BF8EA8-5F90-4E66-A05B-EE2C821F85C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2BF8EA8-5F90-4E66-A05B-EE2C821F85C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2BF8EA8-5F90-4E66-A05B-EE2C821F85C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2BF8EA8-5F90-4E66-A05B-EE2C821F85C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
