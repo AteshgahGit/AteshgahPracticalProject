@@ -132,7 +132,6 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\LoansController.cs" />
     <Compile Include="Global.asax.cs">
@@ -157,6 +156,10 @@
     <ProjectReference Include="..\AteshgahPracticalProject.Business\AteshgahPracticalProject.Business.csproj">
       <Project>{F61E73F3-909E-4ADD-B3E4-D64CAD919145}</Project>
       <Name>AteshgahPracticalProject.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AteshgahPracticalProject.Core\AteshgahPracticalProject.Core.csproj">
+      <Project>{9a506254-a569-4e0c-b54d-2bff880b7c0b}</Project>
+      <Name>AteshgahPracticalProject.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
