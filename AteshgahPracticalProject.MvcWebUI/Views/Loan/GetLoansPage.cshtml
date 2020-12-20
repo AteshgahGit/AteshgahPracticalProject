@@ -1,0 +1,250 @@
+﻿@using AteshgahPracticalProject.MvcWebUI.Models.ViewModels;
+@model LoanViewModel
+
+
+@{
+    ViewBag.Title = "GetLoansPage";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <div class="overflow-auto">
+                    <div class="tableLoanList" id="tableLoanList">
+                        <table class="table table-hover">
+                            <thead class="bg-dark text-light">
+                                <tr>
+                                    <th scope="col">Client ID</th>
+                                    <th scope="col">Client</th>
+                                    <th scope="col">Loan Amount</th>
+                                    <th scope="col">Payout Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="loanListTableBodyTag">
+                                @foreach (var loanDetail in Model.LoanDetails)
+                                {
+                                    <tr data-toggle="modal" class="clickedRow" data-id="@loanDetail.LoanID" data-target="#clickAfterTableRowModalLong">
+                                        @*<td class="takeValue" style="display: none;">@loanDetail.LoanID</td>*@
+                                        <td scope="row">@loanDetail.ClientID</td>
+                                        <td>@loanDetail.ClientFullName</td>
+                                        <td>@(Math.Round(loanDetail.LoanAmount))</td>
+                                        <td>@loanDetail.PayoutDate.Date</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="text-right">
+                <button class="btn col-3 mt-2 mb-2 font-weight-bold btn-outline-primary" data-toggle="modal"
+                        data-target="#exampleModalLong" id="newInvoiceModalHandler">
+                    New
+                </button>
+                <button class="btn col-3 mt-2 mb-2 font-weight-bold btn-outline-dark">Exit</button>
+            </div>
+        </div>
+        <div id="processResultAlertItem" class="col-12">
+            <!--ALERT WILL COME HERE-->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!--MODAL DIV WHICH CREATE NEW LOAN-->
+
+<div class="modalCreateNewInvoice">
+    <div class="container">
+        <div class="row">
+            <!-- Large modal -->
+            <div class="modal fade bd-example-modal-lg" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Create New Loan</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="pageMain">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="text-center" id="createLoanListInModal">
+                                                <form method="post" action="/Invoice/GetCalculatedInvoiceDetails" id="form">
+                                                    <div class="form-group row">
+                                                        <label for="clientListCreateLoanInput"
+                                                               class="col-sm-6 text-right col-form-label"><strong>Client</strong></label>
+                                                        <div class="col-sm-5">
+                                                            <select required class="customHandlingForInputEnabled custom-select"
+                                                                    id="clientListCreateLoanInput">
+                                                                <option selected value="#">Select Client</option>
+                                                                @foreach (var client in Model.Clients)
+                                                                {
+                                                                    <option data-clientid="@client.ID" data-phonenumber="@client.TelephoneNr" value="@client.ID">@client.Name @client.Surname</option>
+                                                                }
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="phoneNumberCreateLoanInput" class="col-sm-6 text-right col-form-label"><strong>Telephone Number</strong></label>
+                                                        <div class="col-sm-6">
+                                                            <input required type="text" maxlength="17" class=" numbersOnly customHandlingForInputEnabled form-control" id="phoneNumberCreateLoanInput" placeholder="Write phone number">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-6 text-right col-form-label">
+                                                            <strong>
+                                                                Loan Amount
+                                                            </strong>
+                                                        </label>
+                                                        <div class="input-group col-sm-5">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">₼</span>
+                                                            </div>
+                                                            <input required type="text" class=" numbersOnly customHandlingForInputEnabled form-control maskedTextField"
+                                                                   id="loanAmountCreateLoanInput" placeholder="Set Amount" maxlength="4"
+                                                                   aria-label="Amount (to the nearest manat)">
+                                                            <div class="input-group-append ">
+                                                                <span class="input-group-text">.00</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="monthPeriodCreateLoanInput" class="col-sm-6 text-right col-form-label">
+                                                            <strong>Loan Period (Months)</strong>
+                                                        </label>
+                                                        <div class="col-sm-5">
+                                                            <select required class="customHandlingForInputEnabled custom-select" id="monthPeriodCreateLoanInput">
+                                                                <option selected value="#">Select Period</option>
+                                                                @for (int i = Model.MinPayPeriod; i <= Model.MaxPayPeriod; i++)
+                                                                {
+                                                                    <option value="@i">@i</option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="monthlyInterestCreateLoanInput"
+                                                               class="col-sm-6 text-right col-form-label">
+                                                            <strong>Monthly Interest Rate</strong>
+                                                        </label>
+                                                        <div class="input-group col-sm-5">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text">%</span>
+                                                            </div>
+                                                            <input required type="text" class=" numbersOnly customHandlingForInputEnabled form-control"
+                                                                   id="monthlyInterestCreateLoanInput" maxlength="2" placeholder="Set Interest">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="payoutDateTimeCreateLoanInput"
+                                                               class="col-sm-6 text-right col-form-label"><strong>Payout Date</strong></label>
+                                                        <div class="col-sm-6">
+                                                            <input required type="date" class="customHandlingForInputEnabled form-control"
+                                                                   placeholder="01/01/2020" maxlength="10" id="payoutDateTimeCreateLoanInput">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="col-sm-11 text-right">
+                                                            <button type="button" id="btnCalculateInvoiceCreating"
+                                                                    class="customHandlingForInputEnabled btn btn-success">
+                                                                Calculate Invoices
+                                                            </button>
+                                                            <button type="button" id="btnCancelCreatingMainFirst"
+                                                                    class="customHandlingForInputEnabled btn ml-1 btn-secondary"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                Cancel
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            @Html.ValidationMessageFor(x => x.AcceptCalculate.LoanAmount, "", new { @class = "text-danger" });
+                                            @Html.ValidationMessageFor(x => x.AcceptCalculate.LoanPeriod, "", new { @class = "text-danger" });
+                                            @Html.ValidationMessageFor(x => x.AcceptCalculate.PayoutDate, "", new { @class = "text-danger" });
+                                            @Html.ValidationMessageFor(x => x.AcceptCalculate.TelephoneNr, "", new { @class = "text-danger" });
+                                            @Html.ValidationMessageFor(x => x.AcceptCalculate.InterestRate, "", new { @class = "text-danger" });
+                                        </div>
+                                        <!-- MODAL INVOICES LIST -->
+                                        <div class="col-12">
+                                            <div class="tableLoanListCreatingTime d-none" id="tableLoanListCreatingTime">
+                                                <!--CREATING DEMO LOADING PLACE-->
+
+                                            </div>
+                                        </div>
+                                        <!-- MODAL INVOICES LIST -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<!--MODAL DIV WHICH CREATE NEW LOAN-->
+<!-- MODAL INVOICE LIST AFTER CLICK TABLE -->
+<div class="container">
+    <div class="row">
+        <!-- Large modal -->
+        <div class="modal fade bd-example-modal-lg" id="clickAfterTableRowModalLong" tabindex="-1" role="dialog"
+             aria-labelledby="afterClickRowTableModalLongTitle"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="afterClickRowTableModalLongTitle">Loan Details : Name Surname</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="pageMain" id="detailInvoicesOnly">
+                            <!--/////////////// PARTIAL BODY AFTER CLICK TABLE -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL INVOICE LIST AFTER CLICK TABLE -->
+
+
+<script>
+    $(function () {
+        
+        $("#clientListCreateLoanInput").change(function () {
+            let clientNumber = $("#clientListCreateLoanInput").find(":selected").data("phonenumber");
+            $("#phoneNumberCreateLoanInput").val(clientNumber);
+        });
+
+    });
+</script>

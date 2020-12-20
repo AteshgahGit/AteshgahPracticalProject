@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AteshgahPracticalProjectDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientUniqueID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TelephoneNr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Loans" Relationship="Self.FK_Loans_Clients" FromRole="Clients" ToRole="Loans" />
+  </EntityType>
+  <EntityType Name="Invoice">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoanID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="InvoiceNr" Type="Int32" Nullable="false" />
+    <Property Name="OrderNr" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Loan" Relationship="Self.FK_Invoices_Loans" FromRole="Invoices" ToRole="Loans" />
+  </EntityType>
+  <EntityType Name="Loan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="InterestRate" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="LoanPeriod" Type="Int32" Nullable="false" />
+    <Property Name="PayoutDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Loans_Clients" FromRole="Loans" ToRole="Clients" />
+    <NavigationProperty Name="Invoices" Relationship="Self.FK_Invoices_Loans" FromRole="Loans" ToRole="Invoices" />
+  </EntityType>
+  <Association Name="FK_Loans_Clients">
+    <End Role="Clients" Type="Self.Client" Multiplicity="1" />
+    <End Role="Loans" Type="Self.Loan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Loans">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Invoices_Loans">
+    <End Role="Loans" Type="Self.Loan" Multiplicity="1" />
+    <End Role="Invoices" Type="Self.Invoice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loans">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoices">
+        <PropertyRef Name="LoanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AteshgahPracticalProjectDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+    <EntitySet Name="Loans" EntityType="Self.Loan" />
+    <AssociationSet Name="FK_Loans_Clients" Association="Self.FK_Loans_Clients">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="Loans" EntitySet="Loans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Invoices_Loans" Association="Self.FK_Invoices_Loans">
+      <End Role="Loans" EntitySet="Loans" />
+      <End Role="Invoices" EntitySet="Invoices" />
+    </AssociationSet>
+    <FunctionImport Name="SP_Calculate_Invoice_Amount">
+      <Parameter Name="LoanPeriod" Mode="In" Type="Int32" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="InvoiceOrderNr" Mode="In" Type="Int32" />
+      <Parameter Name="InterestRate" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Create_Invoices">
+      <Parameter Name="LoanID" Mode="In" Type="Int32" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanPeriod" Mode="In" Type="Int32" />
+      <Parameter Name="InterestRate" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CreateLoan">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanPeriod" Mode="In" Type="Int32" />
+      <Parameter Name="InterestRate" Mode="In" Type="Decimal" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

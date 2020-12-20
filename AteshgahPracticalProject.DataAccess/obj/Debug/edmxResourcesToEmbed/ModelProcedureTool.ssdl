@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AteshgahPracticalProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <Function Name="FunctionUnpaidAmountGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+    <Parameter Name="LoanPeriod" Type="int" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="InvoiceOrderNr" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Calculate_Invoice_Amount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LoanPeriod" Type="int" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="InvoiceOrderNr" Type="int" Mode="In" />
+    <Parameter Name="InterestRate" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="SP_Create_Invoices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LoanID" Type="int" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanPeriod" Type="int" Mode="In" />
+    <Parameter Name="InterestRate" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="SP_CreateLoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanPeriod" Type="int" Mode="In" />
+    <Parameter Name="InterestRate" Type="decimal" Mode="In" />
+  </Function>
+  <EntityContainer Name="AteshgahPracticalProjectDBModelStoreContainer" />
+</Schema>

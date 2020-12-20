@@ -1,0 +1,13 @@
+﻿@using AteshgahPracticalProject.MvcWebUI.Models.ViewModels;
+@model LoanViewModel
+
+@foreach (var loanDetail in Model.LoanDetails)
+{
+    <tr data-toggle="modal" class="clickedRow" data-id="@loanDetail.LoanID" data-target="#clickAfterTableRowModalLong">
+        @*<td class="takeValue" style="display: none;">@loanDetail.LoanID</td>*@
+        <td scope="row">@loanDetail.ClientID</td>
+        <td>@loanDetail.ClientFullName</td>
+        <td>@(Math.Round(loanDetail.LoanAmount))</td>
+        <td>@loanDetail.PayoutDate.Date</td>
+    </tr>
+}

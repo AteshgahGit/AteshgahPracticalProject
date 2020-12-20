@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AteshgahPracticalProjectDBModelStoreContainer" CdmEntityContainer="AteshgahPracticalProjectContext">
+    <FunctionImportMapping FunctionImportName="SP_Calculate_Invoice_Amount" FunctionName="AteshgahPracticalProjectDBModel.Store.SP_Calculate_Invoice_Amount" />
+    <FunctionImportMapping FunctionImportName="SP_Create_Invoices" FunctionName="AteshgahPracticalProjectDBModel.Store.SP_Create_Invoices" />
+    <FunctionImportMapping FunctionImportName="SP_CreateLoan" FunctionName="AteshgahPracticalProjectDBModel.Store.SP_CreateLoan" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Symbols LinesOfCode="127" PostSharpLinesOfCode="0" xmlns="http://schemas.postsharp.org/2.0/symbols">
+  <Class Class="#1=T:[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Aspects.PostSharp.ExceptionAspects.ExceptionLogAspect">
+    <Instance Declaration="#2=A:AteshgahPracticalProject.Business" Id="d59a665c59bec9dc">
+      <Target Target="#3=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.ClientManager::Add(AteshgahPracticalProject.Core.Entities.Concrete.Client)">
+        <JoinPoint Advising="#1" Description="#4=Wrapped by advice(s) OnException" Ordinal="5" />
+      </Target>
+      <Target Target="#5=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.ClientManager::Get(System.Int32)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="7" />
+      </Target>
+      <Target Target="#6=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.ClientManager::GetAll(System.Linq.Expressions.Expression{[mscorlib]System.Func{[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Entities.Concrete.Client,System.Boolean}})">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="12" />
+      </Target>
+      <Target Target="#7=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.LoanManager::Add(AteshgahPracticalProject.Core.Entities.Concrete.Loan)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="19" />
+      </Target>
+      <Target Target="#8=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.LoanManager::Get(System.Int32)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="21" />
+      </Target>
+      <Target Target="#9=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.LoanManager::GetAll(System.Linq.Expressions.Expression{[mscorlib]System.Func{[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Entities.Concrete.Loan,System.Boolean}})">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="26" />
+      </Target>
+      <Target Target="#10=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.LoanManager::GetLoanDetails()">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="30" />
+      </Target>
+      <Target Target="#11=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.InvoiceManager::Add(AteshgahPracticalProject.Core.Entities.Concrete.Invoice)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="36" />
+      </Target>
+      <Target Target="#12=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.InvoiceManager::GetAll(System.Linq.Expressions.Expression{[mscorlib]System.Func{[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Entities.Concrete.Invoice,System.Boolean}})">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="42" />
+      </Target>
+      <Target Target="#13=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.ClientManager::#ctor(AteshgahPracticalProject.DataAccess.Abstract.IClientDal, AutoMapper.IMapper)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="0" />
+      </Target>
+      <Target Target="#14=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.InvoiceManager::#ctor(AteshgahPracticalProject.DataAccess.Abstract.IInvoiceDal, AutoMapper.IMapper)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="32" />
+      </Target>
+      <Target Target="#15=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.InvoiceManager::CalculateInvoiceAmount(System.Int32, System.Decimal, System.Int32, System.Decimal)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="38" />
+      </Target>
+      <Target Target="#16=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.InvoiceManager::Get(System.Int32)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="40" />
+      </Target>
+      <Target Target="#17=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.InvoiceManager::GetCalculatedInvoices(AteshgahPracticalProject.Core.Utilities.ViewTools.CalculateModel)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="45" />
+      </Target>
+      <Target Target="#18=M:[AteshgahPracticalProject.Business]AteshgahPracticalProject.Business.Concrete.Managers.LoanManager::#ctor(AteshgahPracticalProject.DataAccess.Abstract.ILoanDal, AutoMapper.IMapper)">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="14" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#2" Id="d59a665c8eba6588">
+      <Target Target="#3">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="6" />
+      </Target>
+      <Target Target="#5">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="9" />
+      </Target>
+      <Target Target="#6">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="13" />
+      </Target>
+      <Target Target="#7">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="20" />
+      </Target>
+      <Target Target="#8">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="23" />
+      </Target>
+      <Target Target="#9">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="27" />
+      </Target>
+      <Target Target="#10">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="31" />
+      </Target>
+      <Target Target="#11">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="37" />
+      </Target>
+      <Target Target="#12">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="44" />
+      </Target>
+      <Target Target="#13">
+        <JoinPoint Advising="#1" Description="#4" />
+      </Target>
+      <Target Target="#14">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="33" />
+      </Target>
+      <Target Target="#15">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="39" />
+      </Target>
+      <Target Target="#16">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="41" />
+      </Target>
+      <Target Target="#17">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="46" />
+      </Target>
+      <Target Target="#18">
+        <JoinPoint Advising="#1" Description="#4" Ordinal="15" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#3" Id="d59a665cadf70156">
+      <Target>
+        <JoinPoint Advising="#1" Description="#4" Ordinal="2" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#5" Id="d59a665c2311581e">
+      <Target>
+        <JoinPoint Advising="#1" Description="#4" Ordinal="8" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#6" Id="d59a665c09b6d739">
+      <Target>
+        <JoinPoint Advising="#1" Description="#4" Ordinal="10" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#7" Id="d59a665c3a4fce79">
+      <Target>
+        <JoinPoint Advising="#1" Description="#4" Ordinal="16" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#8" Id="d59a665cc223b3da">
+      <Target>
+        <JoinPoint Advising="#1" Description="#4" Ordinal="22" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#9" Id="d59a665c3d4afc29">
+      <Target>
+        <JoinPoint Advising="#1" Description="#4" Ordinal="24" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#10" Id="d59a665c6d1ab5db">
+      <Target>
+        <JoinPoint Advising="#1" Description="#4" Ordinal="28" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#19=T:[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Aspects.PostSharp.ValidationAspects.FluentValidationAspect">
+    <Instance Declaration="#3" Id="d59a665c0fda0983">
+      <Target>
+        <JoinPoint Advising="#19" Description="#20=Wrapped by advice(s) OnEntry, OnSuccess, OnException, OnExit" Ordinal="3" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#11" Id="d59a665c2d5fbbd6">
+      <Target>
+        <JoinPoint Advising="#19" Description="#20" Ordinal="34" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#7" Id="d59a665ccdf968a8">
+      <Target>
+        <JoinPoint Advising="#19" Description="#20" Ordinal="17" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#21=T:[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Aspects.PostSharp.CacheAspects.CacheClearAspect">
+    <Instance Declaration="#3" Id="d59a665cd6066a65">
+      <Target>
+        <JoinPoint Advising="#21" Description="#20" Ordinal="4" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#11" Id="d59a665ce7a9b46e">
+      <Target>
+        <JoinPoint Advising="#21" Description="#20" Ordinal="35" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#7" Id="d59a665c24cc4a70">
+      <Target>
+        <JoinPoint Advising="#21" Description="#20" Ordinal="18" />
+      </Target>
+    </Instance>
+  </Class>
+  <Class Class="#22=T:[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Aspects.PostSharp.CacheAspects.CacheAspect">
+    <Instance Declaration="#6" Id="d59a665c0d7d6e14">
+      <Target>
+        <JoinPoint Advising="#22" Description="#23=Intercepted by OnInvoke" Ordinal="11" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#12" Id="d59a665c50b122c1">
+      <Target>
+        <JoinPoint Advising="#22" Description="#23" Ordinal="43" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#9" Id="d59a665c8ed62937">
+      <Target>
+        <JoinPoint Advising="#22" Description="#23" Ordinal="25" />
+      </Target>
+    </Instance>
+    <Instance Declaration="#10" Id="d59a665cf0c7a530">
+      <Target>
+        <JoinPoint Advising="#22" Description="#23" Ordinal="29" />
+      </Target>
+    </Instance>
+  </Class>
+  <Annotation Target="#24=M:[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Aspects.PostSharp.ExceptionAspects.ExceptionLogAspect::OnException(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#25=2" Description="#26=PostSharp estimates that 2 line(s) of code are saved every time this advice is applied. Use the [LinesOfCodeAvoided] attribute on the aspect or specify the LinesOfCodeAvoided property on the advice attribute to override this value." />
+  <Annotation Target="#27=M:[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Aspects.PostSharp.ValidationAspects.FluentValidationAspect::OnEntry(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#25" Description="#26" />
+  <Annotation Target="#28=M:[PostSharp]PostSharp.Aspects.OnMethodBoundaryAspect::OnSuccess([PostSharp]PostSharp.Aspects.MethodExecutionArgs)" Arguments="#25" Description="#26" />
+  <Annotation Target="#29=M:[PostSharp]PostSharp.Aspects.OnMethodBoundaryAspect::OnExit([PostSharp]PostSharp.Aspects.MethodExecutionArgs)" Arguments="#25" Description="#26" />
+  <Annotation Target="#30=M:[PostSharp]PostSharp.Aspects.OnMethodBoundaryAspect::OnException([PostSharp]PostSharp.Aspects.MethodExecutionArgs)" Arguments="#25" Description="#26" />
+  <Annotation Target="#31=M:[PostSharp]PostSharp.Aspects.OnMethodBoundaryAspect::OnEntry([PostSharp]PostSharp.Aspects.MethodExecutionArgs)" Arguments="#25" Description="#26" />
+  <Annotation Target="#32=M:[AteshgahPracticalProject.Core]AteshgahPracticalProject.Core.Aspects.PostSharp.CacheAspects.CacheClearAspect::OnSuccess(PostSharp.Aspects.MethodExecutionArgs)" Arguments="#25" Description="#26" />
+</Symbols>

@@ -1,0 +1,107 @@
+﻿@using AteshgahPracticalProject.MvcWebUI.Models.ViewModels;
+@model InvoiceViewModel
+
+<table class="table table-striped">
+    <thead class="bg-dark text-light">
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Invoice No</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Invoices)
+        {
+            <tr>
+                <td scope="row">@item.OrderNr</td>
+                @{ string invoiceNumber = item.InvoiceNr.ToString();}
+                @while (item.InvoiceNr / 1000 >= 1)
+                {
+                    invoiceNumber = "0" + invoiceNumber;
+
+                    item.InvoiceNr *= 10;
+                }
+                <td>@invoiceNumber</td>
+
+                <td>@item.DueDate</td>
+                <td>@Math.Round(item.Amount)</td>
+            </tr>
+        }
+    </tbody>
+    <thead>
+        <tr class="bg-secondary font-weight-bold text-center text-light">
+            <td scope="row">&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><h6>Total Interest</h6></td>
+            <td>75</td>
+        </tr>
+        <tr>
+            <td scope="row">&nbsp;</td>
+            <td scope="row">&nbsp;</td>
+            <td><button data-dismiss="modal" aria-label="Close" class="btn col-12 pr-2 pl-2 font-weight-bold btn-outline-success" id="issuedLoanAccept">Issue Loan</button></td>
+            <td class="text-right"><button id="btnCancelModalInvoiceCreating" class="btn col-12 pr-2 pl-2 font-weight-bold btn-outline-secondary" data-dismiss="modal" aria-label="Close">Cancel</button></td>
+        </tr>
+    </thead>
+</table>
+
+<div class="d-none" data-clienidcaughter="@Model.CalculateModel.ClientID" id="valueCaughterCustom">
+    <input type="text" value="@Model.CalculateModel.InterestRate" />
+    <input type="text" value="@Model.CalculateModel.LoanAmount" />
+    <input type="text" value="@Model.CalculateModel.LoanPeriod" />
+    <input type="text" value="@Model.CalculateModel.PayoutDate" />
+    <input type="text" value="@Model.CalculateModel.TelephoneNr" />
+</div>
+
+<script>
+
+    $("#btnCancelModalInvoiceCreating").click(function () {
+        $("#tableLoanListCreatingTime").addClass("d-none");
+        ClearContents();
+    });
+
+    $("#issuedLoanAccept").click(function (e) {
+
+        $("#tableLoanListCreatingTime").addClass("d-none");
+        ClearContents();
+
+        let clientID = $("#valueCaughterCustom").data("clienidcaughter");
+        let loanAmount = $("#valueCaughterCustom").children().eq(1).val();
+        let interestRate = $("#valueCaughterCustom").children().eq(0).val();
+        let period = $("#valueCaughterCustom").children().eq(2).val();
+        let payoutDate = $("#valueCaughterCustom").children().eq(3).val();
+        let phone = $("#valueCaughterCustom").children().eq(4).val();
+
+        let dataModel = {
+            ClientID: clientID,
+            LoanAmount: loanAmount,
+            InterestRate: interestRate,
+            LoanPeriod: period,
+            PayoutDate: payoutDate,
+            TelephoneNr: phone
+        }
+
+        console.log(dataModel);
+
+        $.ajax({
+            url: "/Loan/AcceptedLoan",
+            method: "POST",
+            data: { calculateModel: dataModel}
+        }).done(function (d) {
+
+            updateLoanList();
+
+            $("#processResultAlertItem").empty();
+            $("#processResultAlertItem").html(d);
+
+            setTimeout(function () {
+                $("#alertNotification").hide();
+            }, 3000)
+
+        }).fail(function () {
+            alert("Something Gets Wrong");
+        })
+    });
+
+</script>

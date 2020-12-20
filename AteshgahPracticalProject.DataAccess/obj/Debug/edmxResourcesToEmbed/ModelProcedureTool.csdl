@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AteshgahPracticalProjectDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AteshgahPracticalProjectContext" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="SP_Calculate_Invoice_Amount">
+      <Parameter Name="LoanPeriod" Mode="In" Type="Int32" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="InvoiceOrderNr" Mode="In" Type="Int32" />
+      <Parameter Name="InterestRate" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_Create_Invoices">
+      <Parameter Name="LoanID" Mode="In" Type="Int32" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanPeriod" Mode="In" Type="Int32" />
+      <Parameter Name="InterestRate" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="SP_CreateLoan">
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="LoanAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="LoanPeriod" Mode="In" Type="Int32" />
+      <Parameter Name="InterestRate" Mode="In" Type="Decimal" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

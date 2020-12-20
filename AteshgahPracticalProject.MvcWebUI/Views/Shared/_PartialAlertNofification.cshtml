@@ -1,0 +1,12 @@
+﻿@using AteshgahPracticalProject.Business.CustomViewHelper;
+@model BusinessResult
+
+@if (Model.ResultStatus == 1)
+{
+    <div id="alertNotification" class="alert alert-lg alert-@Model.AlertColor text-center">@Model.ResultMessage</div>
+
+}
+else if (Model.ResultStatus == 0)
+{
+    <div id="alertNotification" class="alert alert-lg alert-@Model.AlertColor text-center">@Model.ResultMessage</div>
+}

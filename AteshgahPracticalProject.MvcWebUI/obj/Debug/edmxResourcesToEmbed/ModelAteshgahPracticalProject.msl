@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AteshgahPracticalProjectDBModelStoreContainer" CdmEntityContainer="AteshgahPracticalProjectDBEntities">
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="AteshgahPracticalProjectDBModel.Client">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ClientUniqueID" ColumnName="ClientUniqueID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="TelephoneNr" ColumnName="TelephoneNr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Invoices">
+      <EntityTypeMapping TypeName="AteshgahPracticalProjectDBModel.Invoice">
+        <MappingFragment StoreEntitySet="Invoices">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="LoanID" ColumnName="LoanID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="InvoiceNr" ColumnName="InvoiceNr" />
+          <ScalarProperty Name="OrderNr" ColumnName="OrderNr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Loans">
+      <EntityTypeMapping TypeName="AteshgahPracticalProjectDBModel.Loan">
+        <MappingFragment StoreEntitySet="Loans">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="InterestRate" ColumnName="InterestRate" />
+          <ScalarProperty Name="LoanPeriod" ColumnName="LoanPeriod" />
+          <ScalarProperty Name="PayoutDate" ColumnName="PayoutDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_Calculate_Invoice_Amount" FunctionName="AteshgahPracticalProjectDBModel.Store.SP_Calculate_Invoice_Amount" />
+    <FunctionImportMapping FunctionImportName="SP_Create_Invoices" FunctionName="AteshgahPracticalProjectDBModel.Store.SP_Create_Invoices" />
+    <FunctionImportMapping FunctionImportName="SP_CreateLoan" FunctionName="AteshgahPracticalProjectDBModel.Store.SP_CreateLoan" />
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AteshgahPracticalProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Clients">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientUniqueID" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TelephoneNr" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Invoices">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoanID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="DueDate" Type="datetime" Nullable="false" />
+    <Property Name="InvoiceNr" Type="int" Nullable="false" />
+    <Property Name="OrderNr" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Loans">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientID" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="InterestRate" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="LoanPeriod" Type="int" Nullable="false" />
+    <Property Name="PayoutDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Invoices_Loans">
+    <End Role="Loans" Type="Self.Loans" Multiplicity="1" />
+    <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Loans">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Invoices">
+        <PropertyRef Name="LoanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Loans_Clients">
+    <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+    <End Role="Loans" Type="Self.Loans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clients">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Loans">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="FunctionUnpaidAmountGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="money">
+    <Parameter Name="LoanPeriod" Type="int" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="InvoiceOrderNr" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SP_Calculate_Invoice_Amount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LoanPeriod" Type="int" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="InvoiceOrderNr" Type="int" Mode="In" />
+    <Parameter Name="InterestRate" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="SP_Create_Invoices" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LoanID" Type="int" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanPeriod" Type="int" Mode="In" />
+    <Parameter Name="InterestRate" Type="decimal" Mode="In" />
+  </Function>
+  <Function Name="SP_CreateLoan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserID" Type="nvarchar" Mode="In" />
+    <Parameter Name="LoanAmount" Type="money" Mode="In" />
+    <Parameter Name="LoanPeriod" Type="int" Mode="In" />
+    <Parameter Name="InterestRate" Type="decimal" Mode="In" />
+  </Function>
+  <EntityContainer Name="AteshgahPracticalProjectDBModelStoreContainer">
+    <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Loans" EntityType="Self.Loans" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Invoices_Loans" Association="Self.FK_Invoices_Loans">
+      <End Role="Loans" EntitySet="Loans" />
+      <End Role="Invoices" EntitySet="Invoices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Loans_Clients" Association="Self.FK_Loans_Clients">
+      <End Role="Clients" EntitySet="Clients" />
+      <End Role="Loans" EntitySet="Loans" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
